@@ -19,9 +19,12 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+#if ANDROID
+        builder.Services.AddSingleton<ISpeechToText, SpeechToTextImplementation>();
+#endif
 
-		builder.Services.AddTransient<MainPage>();
-		builder.Services.AddSingleton<ISpeechToText, SpeechToTextImplementation>();
+        builder.Services.AddTransient<MainPage>();
+        //builder.Services.AddSingleton<ISpeechToText, SpeechToTextImplementation>();
 
 		return builder.Build();
 	}
